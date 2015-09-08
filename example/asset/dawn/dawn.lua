@@ -1,0 +1,44 @@
+return {
+{
+	type="picture",
+	id=0,
+	export="glow",
+	{tex=1,src={2,2,2,129,130,129,130,2},screen={-1024,-1016,-1024,1016,1024,1016,1024,-1016}},
+},
+{
+	type="picture",
+	id=1,
+	export="sun",
+	{tex=1,src={132,2,132,116,246,116,246,2},screen={-912,-912,-912,912,912,912,912,-912}},
+},
+{
+	type="picture",
+	id=2,
+	export="moon",
+	{tex=1,src={248,2,248,83,329,83,329,2},screen={-648,-648,-648,648,648,648,648,-648}},
+},
+{
+	type="picture",
+	id=3,
+	export="noise",
+	{tex=1,src={331,2,331,66,395,66,395,2},screen={-512,-512,-512,512,512,512,512,-512}},
+},
+{
+	type="picture",
+	id=4,
+	export="star",
+	{tex=1,src={397,2,397,11,406,11,406,2},screen={-72,-72,-72,72,72,72,72,-72}},
+},
+{
+	type="picture",
+	id=5,
+	export="blank",
+	{tex=1,src={408,2,408,3,409,3,409,2},screen={-8,-8,-8,8,8,8,8,-8}},
+},
+{
+	type="label",
+	export="default_label",
+	id=6,
+	font = "", color = 0xffffffff, align = 2, size = 20, width = 100, height = 40, noedge = false
+},
+}

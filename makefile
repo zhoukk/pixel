@@ -22,27 +22,27 @@ undefined:
 
 mingw : TARGET := pixel.exe
 mingw : CFLAGS += -I/usr/include
-mingw : LDFLAGS += -L/usr/bin -L/usr/local/bin -lgdi32 -lglew32 -lopengl32
+mingw : LDFLAGS += -L/usr/bin -L/usr/local/bin -lgdi32 -lglew32 -lopengl32 -llua53
 mingw : PLATFORM := platform/win32.c
 mingw : pixel
 
 core : TARGET := pixel.dll
 core : CFLAGS += -I/usr/include --shared
-core : LDFLAGS += -L/usr/bin -L/usr/local/bin -lgdi32 -lglew32 -lopengl32
+core : LDFLAGS += -L/usr/bin -L/usr/local/bin -lgdi32 -lglew32 -lopengl32 -llua53
 core : PLATFORM := src/lcore.c
 core : pixel_core
 
 linux : TARGET := pixel
 linux : CFLAGS +=
-linux : LDFLAGS += -Wl,-E -Wl,-rpath,/usr/lib64,-rpath,/usr/local/lib -lGLEW -lGL -lX11 -lm -ldl
+linux : LDFLAGS += -Wl,-E -Wl,-rpath,/usr/lib64,-rpath,/usr/local/lib -lGLEW -lGL -lX11 -lm -ldl -llua
 linux : PLATFORM := platform/linux.c
 linux : pixel
 
 pixel_core : $(foreach v, $(SRC), src/$(v))
-	gcc $(CFLAGS) -o $(TARGET) $^ $(PLATFORM) $(LDFLAGS) -llua53
+	gcc $(CFLAGS) -o $(TARGET) $^ $(PLATFORM) $(LDFLAGS)
 
 pixel : $(foreach v, $(SRC), src/$(v))
-	gcc $(CFLAGS) -o $(TARGET) $^ $(PLATFORM) $(LDFLAGS) -llua53
+	gcc $(CFLAGS) -o $(TARGET) $^ $(PLATFORM) $(LDFLAGS)
 
 clean :
 	-rm -f pixel.exe

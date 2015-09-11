@@ -230,9 +230,9 @@ int pixel_viewport(lua_State *L) {
 
 void pixel_close(void) {
 	lua_State *L = P.L;
-	lua_pushvalue(L, 2);
+	lua_getfield(L, LUA_REGISTRYINDEX, PIXEL_UNIT);
 	call(L, 0, 0);
-	lua_settop(L, 9);
+	lua_settop(L, 3);
 
 	pixel_unit(L);
 

@@ -76,7 +76,7 @@ static int traceback(lua_State *L) {
 }
 
 static void error(lua_State *L, const char *err) {
-	lua_pushvalue(L, 7);
+	lua_getfield(L, LUA_REGISTRYINDEX, PIXEL_ERROR);
 	lua_pushstring(L, err);
 	if (LUA_OK != lua_pcall(L, 1, 0, 0)) {
 		pixel_log("error: %s\n", lua_tostring(L, -1));

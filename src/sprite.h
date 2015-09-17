@@ -20,6 +20,7 @@ extern "C" {
 	void sprite_drawquad(struct pack_picture *pic, const struct srt *srt, const struct sprite_trans *arg);
 	void sprite_drawpolygon(struct pack_polygon *poly, const struct srt *srt, const struct sprite_trans *arg);
 	struct sprite *sprite_label(struct pack_label *pl, const char *text);
+	struct sprite *sprite_panel(struct pack_panel *pp);
 	void sprite_ps(struct sprite *s, int x, int y, float scale);
 	void sprite_scale(struct sprite *s, float scale);
 	void sprite_sr(struct sprite *s, float sx, float sy, float r);

@@ -26,6 +26,7 @@ end
 pixel.clear = shader.clear
 pixel.shader = shader.new
 pixel.label = sprite.label
+pixel.panel = sprite.panel
 
 function pixel.sprite(packname, name)
 	local p, id = spritepack.query(packname, name)

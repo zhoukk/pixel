@@ -89,6 +89,17 @@ function sprite.new(pack, id)
 	return debug.setmetatable(c.new(pack, id), sprite_meta)
 end
 
+function sprite.panel(tb)
+	local panel = c.panel(tb.width, tb.height, tb.scissor)
+	if panel then
+		panel = debug.setmetatable(panel, sprite_meta)
+		if tb.scissor then
+			panel.scissor = tb.scissor
+		end
+		return panel
+	end
+end
+
 function sprite.label(tb)
 	local size = tb.size or tb.height - 2
 	local label = c.label(tb.width, tb.height, size, tb.color, tb.align, tb.space_w or 0, tb.space_h or 0, tb.auto_scale or 0, tb.edge or 0)

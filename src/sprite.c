@@ -1327,11 +1327,41 @@ static struct sprite *sprite_label_init(struct sprite *s, struct pack_label *pl)
 	return s;
 }
 
+static struct sprite *sprite_panel_init(struct sprite *s, struct pack_panel *pp) {
+	struct pack_panel *panel = (struct pack_panel *)(s + 1);
+	s->parent = 0;
+	*panel = *pp;
+	s->s.panel = panel;
+	s->t.mat = 0;
+	s->t.color = 0xffffffff;
+	s->t.addi = 0;
+	s->t.pid = PROGRAM_DEFAULT;
+	s->flag = 0;
+	s->name = 0;
+	s->id = 0;
+	s->type = TYPE_PANEL;
+	s->start_frame = 0;
+	s->total_frame = 0;
+	s->frame = 0;
+	s->data.rich_text = 0;
+	s->material = 0;
+	return s;
+}
+
 struct sprite *sprite_label(struct pack_label *pl, const char *text) {
 	struct sprite *s = (struct sprite *)malloc(sizeof(struct sprite) + sizeof(struct pack_label));
 	s = sprite_label_init(s, pl);
 	if (text) {
 		sprite_text(s, text);
+	}
+	return s;
+}
+
+struct sprite *sprite_panel(struct pack_panel *pp) {
+	struct sprite *s = (struct sprite *)malloc(sizeof(struct sprite) + sizeof(struct pack_panel));
+	s = sprite_panel_init(s, pp);
+	if (pp->scissor) {
+		s->data.scissor = pp->scissor;
 	}
 	return s;
 }
@@ -2471,6 +2501,16 @@ static int llabel(lua_State *L) {
 	return 1;
 }
 
+static int lpanel(lua_State *L) {
+	struct pack_panel panel;
+	panel.width = (int)luaL_checkinteger(L, 1);
+	panel.height = (int)luaL_checkinteger(L, 2);
+	panel.scissor = (int)lua_toboolean(L, 3);
+	int size = sizeof(struct sprite) + sizeof(struct pack_panel);
+	sprite_panel_init((struct sprite *)lua_newuserdata(L, size), &panel);
+	return 1;
+}
+
 static int lproxy(lua_State *L) {
 	static struct pack_part part = {
 		{
@@ -2529,6 +2569,7 @@ int pixel_sprite(lua_State *L) {
 		{"new", lnew},
 		{"material", lmaterial},
 		{"label", llabel},
+		{"panel", lpanel},
 		{"proxy", lproxy},
 		{0, 0},
 	};

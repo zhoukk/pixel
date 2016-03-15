@@ -1,6 +1,6 @@
 .PHONY : mingw pixel linux undefined
 
-CFLAGS = -g -Wall -Isrc -I/usr/local/include -DPIXEL_LUA -DLUA_USE_DLOPEN -DLUA_COMPAT_MATHLIB
+CFLAGS = -g -Wall -I./ -Isrc -I/usr/local/include -DPIXEL_LUA -DLUA_USE_DLOPEN -DLUA_COMPAT_MATHLIB
 LDFLAGS :=
 
 SRC := array.c color.c font.c font_ctx.c lgeometry.c glsl.c hash.c label.c log.c matrix.c \

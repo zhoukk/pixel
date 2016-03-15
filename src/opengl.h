@@ -11,7 +11,7 @@
 
 #elif defined(linux) || defined(__linux) || defined(__linux__)
 
-#define OPENGLES 2
+#define OPENGLES 0
 #include <GLES2/gl2.h>
 #include <GLES2/gl2ext.h>
 #define PRECISION "precision lowp float;"

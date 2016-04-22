@@ -1,6 +1,6 @@
 .PHONY : mingw pixel linux undefined
 
-CFLAGS = -g -Wall -I./ -Isrc -I/usr/local/include -DPIXEL_LUA -DLUA_USE_DLOPEN -DLUA_COMPAT_MATHLIB
+CFLAGS = -g -Wall -I./ -Isrc -I../lua-5.3.2/src -DPIXEL_LUA -DLUA_USE_DLOPEN -DLUA_COMPAT_MATHLIB
 LDFLAGS :=
 
 SRC := array.c color.c font.c font_ctx.c lgeometry.c glsl.c hash.c label.c log.c matrix.c \
@@ -34,7 +34,7 @@ core : pixel_core
 
 linux : TARGET := pixel
 linux : CFLAGS +=
-linux : LDFLAGS += -Wl,-E -Wl,-rpath,/usr/lib64,-rpath,/usr/local/lib -lGLEW -lGL -lX11 -lm -ldl -llua
+linux : LDFLAGS += -L../lua-5.3.2/src -Wl,-E -Wl,-rpath,../lua-5.3.2/src -lGLEW -lGL -lX11 -lm -ldl -llua
 linux : PLATFORM := platform/linux.c
 linux : pixel
 
